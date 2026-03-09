@@ -1,5 +1,8 @@
 /* Navbar */
-
+.logo img{
+    height: 5rem;
+    
+}
 .navbar-custom{
 position:absolute;
 width:100%;
@@ -526,3 +529,13 @@ padding-top:15px;
 text-align:center;
 font-size:14px;
 }
+
+
+
+
+/* Sindhudurg */
+
+
+
+
+

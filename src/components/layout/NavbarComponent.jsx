@@ -1,15 +1,13 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
-
+import logo from "../../assets/logo.png";
 export default function NavbarComponent() {
   return (
     <Navbar expand="lg" className="navbar-custom">
       <Container>
 
         <Navbar.Brand className="logo">
-          <span className="logo-icon">🏠</span>
-          <div>
-            <h5>BHL Landbase</h5>
-            <small>Real Estate Center</small>
+          <div className="logo">
+            <img src={logo} alt="logo" className="img-fluid" />
           </div>
         </Navbar.Brand>
 
