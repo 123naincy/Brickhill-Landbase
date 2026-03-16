@@ -4,23 +4,23 @@ import { FaHome, FaBuilding, FaChartLine, FaArrowRight } from "react-icons/fa";
 
 export default function InvestmentOpportunities() {
 
-const opportunities = [
-  {
-    icon: <FaHome />,
-    title: "Luxury Villa Plots",
-    desc: "Premium plots ideal for building luxury villas and holiday homes near Goa’s pristine beaches."
-  },
-  {
-    icon: <FaChartLine />,
-    title: "Smart Land Investment",
-    desc: "Invest in fast-growing Sindhudurg region with high appreciation potential and tourism demand."
-  },
-  {
-    icon: <FaBuilding />,
-    title: "Resort Lifestyle Community",
-    desc: "Planned community with clubhouse, open gym, walking trails, spa and resort-style amenities."
-  }
-];
+  const opportunities = [
+    {
+      icon: <FaHome />,
+      title: "Luxury Villa Plots",
+      desc: "Premium plots ideal for building luxury villas and holiday homes near Goa’s pristine beaches."
+    },
+    {
+      icon: <FaChartLine />,
+      title: "Smart Land Investment",
+      desc: "Invest in fast-growing Sindhudurg region with high appreciation potential and tourism demand."
+    },
+    {
+      icon: <FaBuilding />,
+      title: "Resort Lifestyle Community",
+      desc: "Planned community with clubhouse, open gym, walking trails, spa and resort-style amenities."
+    }
+  ];
   return (
     <section className="investment-section">
 
@@ -36,12 +36,12 @@ const opportunities = [
         >
 
           <h2 className="investment-title">
-Why Invest in Premium Residential Villa Plots
-</h2>
+            Why Invest in Premium Residential Villa Plots
+          </h2>
 
-<p className="investment-sub">
-Premium resort-style plots near Goa offering luxury lifestyle and high investment potential.
-</p>
+          <p className="investment-sub">
+            Premium resort-style plots near Goa offering luxury lifestyle and high investment potential.
+          </p>
 
         </motion.div>
 

@@ -53,7 +53,7 @@ export default function WhyChoose() {
           </h2>
 
           <p className="why-sub">
-            We provide more than just land — we create opportunities for
+            We provide more than just land we create opportunities for
             investment, growth, and long-term prosperity.
           </p>
         </motion.div>
