@@ -10,7 +10,7 @@ export default function MasterPlanSection() {
 
         <img
           src={masterplan}
-          alt="Perto The Goa Master Plan"
+          alt="Premium Residential Villa Plots Master Plan"
           className="img-fluid mt-4"
         />
 

@@ -1,40 +1,17 @@
 import { Container, Row, Col, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FaBed, FaBath, FaRulerCombined, FaMapMarkerAlt } from "react-icons/fa";
-import card from "../../assets/hero-slider-three.jpg";
+import { FaRulerCombined, FaMapMarkerAlt, FaLayerGroup } from "react-icons/fa";
+import card from "../../assets/goa-carnivals-beach-water-sports-activities.jpg";
 
 const properties = [
   {
-    title: "Luxury Villa",
-    price: "$850,000",
-    location: "New York, USA",
-    beds: 4,
-    baths: 3,
-    area: "2500 sqft"
-  },
-  {
-    title: "Modern Apartment",
-    price: "$420,000",
-    location: "California, USA",
-    beds: 3,
-    baths: 2,
-    area: "1800 sqft"
-  },
-  {
-    title: "Family House",
-    price: "$560,000",
-    location: "Chicago, USA",
-    beds: 4,
-    baths: 3,
-    area: "2200 sqft"
-  },
-  {
-    title: "Beach House",
-    price: "$900,000",
-    location: "Miami, USA",
-    beds: 5,
-    baths: 4,
-    area: "3000 sqft"
+    title: "Premium Residential Villa Plots",
+    price: "₹25,000 / sq.yd",
+    location: "Sindhudurg, Maharashtra",
+    projectArea: "6.2 Acre",
+    plotSizes: "350 – 450 sq.yd",
+    link: "/sindhudurg"
   }
 ];
 
@@ -44,10 +21,32 @@ export default function FeaturedSection() {
 
       <Container>
 
-        <div className="d-flex justify-content-between align-items-center mb-5">
-          <h2>Featured Properties</h2>
-          <a className="view-all" href="#">View All →</a>
-        </div>
+        {/* Header */}
+
+        <Row className="align-items-center section-header mb-5">
+
+          <Col lg={8}>
+            <h2 className="section-title">
+              Premium Residential Plots Near Goa
+            </h2>
+
+            <p className="section-subtitle">
+              Resort-style plots in Sindhudurg with sizes ranging from
+              <strong> 350 – 450 sq.yd</strong>, perfect for villas and
+              high-return real estate investments.
+            </p>
+          </Col>
+
+          <Col lg={4} className="text-lg-end mt-3 mt-lg-0">
+            <Link to="/properties" className="view-all-btn">
+              Explore All Plots →
+            </Link>
+          </Col>
+
+        </Row>
+
+
+        {/* Property Cards */}
 
         <Row>
 
@@ -56,46 +55,57 @@ export default function FeaturedSection() {
             <Col lg={4} md={6} key={index}>
 
               <motion.div
-                initial={{ opacity: 0, y: 60 }}
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
 
                 <Card className="property-card">
 
-                  <div className="price-tag">{item.price}</div>
+                  {/* Image */}
 
                   <div className="img-wrapper">
+
                     <Card.Img src={card} />
+
+                    <div className="overlay"></div>
+
+                    <div className="price-tag">
+                      {item.price}
+                    </div>
+
                   </div>
+
+
+                  {/* Card Body */}
 
                   <Card.Body>
 
-                    <h4>{item.title}</h4>
+                    <h4 className="property-title">
+                      {item.title}
+                    </h4>
 
                     <p className="location">
                       <FaMapMarkerAlt /> {item.location}
                     </p>
 
+
                     <div className="property-info">
 
                       <span>
-                        <FaBed /> {item.beds} Beds
+                        <FaRulerCombined /> {item.plotSizes}
                       </span>
 
                       <span>
-                        <FaBath /> {item.baths} Baths
-                      </span>
-
-                      <span>
-                        <FaRulerCombined /> {item.area}
+                        <FaLayerGroup /> {item.projectArea}
                       </span>
 
                     </div>
 
-                    <button className="details-btn">
+
+                    <Link to={item.link} className="details-btn">
                       View Details
-                    </button>
+                    </Link>
 
                   </Card.Body>
 

@@ -8,19 +8,20 @@ import Investment from "../components/sections/sindhudurg/Investment";
 import Testimonials from "../components/sections/sindhudurg/Testimonals";
 import Contact from "../components/sections/sindhudurg/Contact";
 import Footer from "../components/layout/Footer"
+import ArtisticImpression from "../components/sections/sindhudurg/ArtisticImpression";
 function Sindhudurg(){
 return(
    <>
     <Hero />
       <About />
+      <ArtisticImpression />
       <Features />
-      <Gallery />
       <Plots />
       <Location />
       <Investment />
       <Testimonials />
-      <Contact />
-      <Footer />
+       <Gallery />
+      <Contact /> 
    </>
 );
 }

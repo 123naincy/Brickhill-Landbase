@@ -1,21 +1,22 @@
-import React from "react";
-import Navbar from "../components/layout/NavbarComponent";
-import HeroSection from "../components/sections/HeroSection";
-import CategoriesSection from "../components/sections/CategoriesSection";
+import HeroSection from "../components/sections/sindhudurg/Hero";
 import FeaturedSection from "../components/sections/FeaturedSection";
-import WhyChooseUsSection from "../components/sections/WhyChooseUsSection";
+import WhyChoose from "../components/sections/WhyChoose";
 import VideoSection from "../components/sections/VideoSection";
-import Footer from "../components/layout/Footer";
+import InvestmentJourney from "../components/sections/InvestmentJourney";
+import HowItWorks from "../components/sections/HowItWorks";
+import InvestmentOpportunities from "../components/sections/InvestmentOpportunities";
+import CtaBanner from "../components/sections/CtaBanner";
 export default function Home() {
   return (
     <div className="app-shell">
-      <Navbar />
       <HeroSection />
-      <CategoriesSection />
+       <WhyChoose />  
+        <InvestmentJourney /> 
       <FeaturedSection />
       <VideoSection />
-      <WhyChooseUsSection />
-      <Footer />
+      <HowItWorks />  
+      <InvestmentOpportunities />
+      <CtaBanner />
     </div>
   );
 } 

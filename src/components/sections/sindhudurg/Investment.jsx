@@ -109,7 +109,7 @@ export default function Investment() {
 
             <Col md={4}>
               <h1 className="stat-number text-teal">
-                500+
+                200+
               </h1>
               <p className="text-light">
                 Happy Investors

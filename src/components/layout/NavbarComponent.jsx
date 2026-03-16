@@ -21,7 +21,7 @@ export default function NavbarComponent() {
               Home
             </Nav.Link>
 
-            <Nav.Link as={NavLink} to="/sindhudurg-plots">
+            <Nav.Link as={NavLink} to="/sindhudurg">
               Sindhudurg
             </Nav.Link>
 
