@@ -24,19 +24,6 @@ export default function NavbarComponent() {
             <Nav.Link as={NavLink} to="/sindhudurg">
               Sindhudurg
             </Nav.Link>
-
-            <Nav.Link as={NavLink} to="/property">
-              Property
-            </Nav.Link>
-
-            <Nav.Link as={NavLink} to="/agency">
-              Agency
-            </Nav.Link>
-
-            <Nav.Link as={NavLink} to="/blog">
-              Blog
-            </Nav.Link>
-
             <Nav.Link as={NavLink} to="/contact">
               Contact
             </Nav.Link>

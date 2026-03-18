@@ -9,14 +9,16 @@ import Testimonials from "../components/sections/sindhudurg/Testimonals";
 import Contact from "../components/sections/sindhudurg/Contact";
 import Footer from "../components/layout/Footer"
 import ArtisticImpression from "../components/sections/sindhudurg/ArtisticImpression";
+import WhySindhudurg from "../components/sections/sindhudurg/WhySinshudurg";
 function Sindhudurg(){
 return(
    <>
     <Hero />
-      <About />
+    <WhySindhudurg />
       <ArtisticImpression />
       <Features />
       <Plots />
+       <About />
       <Location />
       <Investment />
       <Testimonials />
