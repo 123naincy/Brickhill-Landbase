@@ -1,95 +1,72 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { Palmtree, Waves, Sun } from "lucide-react";
 
 export default function About() {
-
   const features = [
     {
       icon: Palmtree,
       title: "Tropical Paradise",
-      desc: "Surrounded by swaying palms and exotic flora"
+      desc: "Surrounded by swaying palms and exotic flora",
     },
     {
       icon: Waves,
       title: "Beach Access",
-      desc: "Minutes away from pristine Goan beaches"
+      desc: "Minutes away from pristine Goan beaches",
     },
     {
       icon: Sun,
       title: "Sunny Climate",
-      desc: "Year-round perfect weather for outdoor living"
-    }
+      desc: "Perfect weather for outdoor living",
+    },
   ];
 
   return (
-    <section className="about-section py-5">
-
+    <section className="about-new-section">
       <Container>
 
-        {/* Heading Animation */}
-
+        {/* CENTER CONTENT */}
         <motion.div
-          className="text-center mb-5"
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
+          className="about-main-card text-center"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7 }}
         >
+          <h2 className="about-title">Live the Resort Life</h2>
 
-          <h2 className="display-4 fw-bold mb-3">
-            Live the Resort Life
-          </h2>
-
-          <p className="text-muted mx-auto" style={{ maxWidth: "700px" }}>
+          <p className="about-sub">
             Experience unparalleled luxury in Goa's most prestigious
             residential development
           </p>
-
         </motion.div>
 
-
-        {/* Cards */}
-
-        <Row className="g-4 justify-content-center">
+        {/* FLOATING FEATURES */}
+        <div className="about-floating">
 
           {features.map((item, index) => {
-
             const Icon = item.icon;
 
             return (
-              <Col md={4} key={index}>
+              <motion.div
+                key={index}
+                className={`floating-card floating-${index}`}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2 }}
+              >
+                <div className="floating-icon">
+                  <Icon size={24} />
+                </div>
 
-                <motion.div
-                  className="about-card text-center p-4"
-                  initial={{ opacity: 0, y: 80 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, delay: index * 0.2 }}
-                >
-
-                  <div className="icon-circle mb-4">
-
-                    <Icon size={32} color="white" />
-
-                  </div>
-
-                  <h4 className="fw-bold mb-3">
-                    {item.title}
-                  </h4>
-
-                  <p className="text-muted">
-                    {item.desc}
-                  </p>
-
-                </motion.div>
-
-              </Col>
+                <h5>{item.title}</h5>
+                <p>{item.desc}</p>
+              </motion.div>
             );
           })}
 
-        </Row>
+        </div>
 
       </Container>
-
     </section>
   );
 }

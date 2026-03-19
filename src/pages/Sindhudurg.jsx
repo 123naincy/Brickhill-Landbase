@@ -14,13 +14,10 @@ function Sindhudurg(){
 return(
    <>
     <Hero />
-    <WhySindhudurg />
       <ArtisticImpression />
       <Features />
       <Plots />
-       <About />
       <Location />
-      <Investment />
       <Testimonials />
        <Gallery />
       <Contact /> 

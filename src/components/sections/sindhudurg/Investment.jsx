@@ -1,145 +1,123 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { motion } from "framer-motion";
-import { TrendingUp, Award, Users, Calendar } from "lucide-react";
+import { TrendingUp, Award, Users, Calendar, ArrowRight } from "lucide-react";
 
 export default function Investment() {
-
   const benefits = [
     {
       icon: TrendingUp,
       title: "25% Annual Growth",
-      desc: "Goa real estate consistently appreciates"
+      desc: "Goa real estate consistently appreciates with strong long-term demand.",
     },
     {
       icon: Award,
       title: "Premium Quality",
-      desc: "Award-winning design and construction"
+      desc: "Thoughtfully planned development with premium infrastructure and lifestyle appeal.",
     },
     {
       icon: Users,
       title: "Rental Income",
-      desc: "High tourism ensures steady rental returns"
+      desc: "High tourism activity supports strong holiday home and rental return potential.",
     },
     {
       icon: Calendar,
       title: "Flexible Payment",
-      desc: "Easy payment plans available"
-    }
+      desc: "Investor-friendly payment plans designed for convenience and smooth booking.",
+    },
+  ];
+
+  const stats = [
+    { value: "200+", label: "Happy Investors" },
+    { value: "45", label: "Premium Plots" },
+    { value: "6.2 Acres", label: "Prime Residential Land" },
   ];
 
   return (
-    <section className="investment-section">
-
+    <section className="investment-luxury-section">
       <Container>
+        <Row className="align-items-center g-5">
+          <Col lg={5}>
+            <motion.div
+              className="investment-content-wrap"
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <span className="investment-tag">Wealth + Lifestyle</span>
 
-        {/* Heading */}
+              <h2 className="investment-main-title">Smart Investment</h2>
 
-        <motion.div
-          className="text-center mb-5"
-          initial={{ opacity: 0, y: 70 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
+              <p className="investment-main-sub">
+                More than a home, it’s your financial future. Invest in a
+                premium plotted community that combines lifestyle value, rental
+                potential, and long-term capital appreciation.
+              </p>
 
-          <h2 className="display-4 fw-bold text-white mb-3">
-            Smart Investment
-          </h2>
+              <div className="investment-mini-points">
+                <div className="mini-point">High growth destination</div>
+                <div className="mini-point">Tourism-driven demand</div>
+                <div className="mini-point">Premium plotted inventory</div>
+              </div>
 
-          <p className="text-light">
-            More than a home, it's your financial future
-          </p>
+              <Button className="investment-cta-btn">
+                Explore Investment Opportunity <ArrowRight size={18} />
+              </Button>
+            </motion.div>
+          </Col>
 
-        </motion.div>
+          <Col lg={7}>
+            <Row className="g-4">
+              {benefits.map((benefit, index) => {
+                const Icon = benefit.icon;
 
+                return (
+                  <Col md={6} key={index}>
+                    <motion.div
+                      className={`investment-card-new card-tone-${(index % 4) + 1}`}
+                      initial={{ opacity: 0, y: 50, scale: 0.96 }}
+                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{
+                        duration: 0.7,
+                        delay: index * 0.12,
+                        ease: "easeOut",
+                      }}
+                      viewport={{ once: true }}
+                      whileHover={{ y: -10 }}
+                    >
+                      <div className="investment-icon-new">
+                        <Icon size={28} strokeWidth={2.1} />
+                      </div>
 
-        {/* Investment Benefits */}
-
-        <Row className="g-4 justify-content-center mb-5">
-
-          {benefits.map((benefit, index) => {
-
-            const Icon = benefit.icon;
-
-            return (
-              <Col md={6} lg={3} key={index}>
-
-                <motion.div
-                  className="investment-card text-center"
-                  initial={{ opacity: 0, y: 60 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.6,
-                    delay: index * 0.15
-                  }}
-                >
-
-                  <div className="investment-icon">
-
-                    <Icon size={32} color="white" />
-
-                  </div>
-
-                  <h4 className="text-white mt-4 fw-bold">
-                    {benefit.title}
-                  </h4>
-
-                  <p className="text-light">
-                    {benefit.desc}
-                  </p>
-
-                </motion.div>
-
-              </Col>
-            );
-          })}
-
+                      <h4>{benefit.title}</h4>
+                      <p>{benefit.desc}</p>
+                    </motion.div>
+                  </Col>
+                );
+              })}
+            </Row>
+          </Col>
         </Row>
 
-
-        {/* Stats Section */}
-
         <motion.div
-          className="stats-box"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7 }}
+          className="investment-stats-strip"
+          initial={{ opacity: 0, y: 50, scale: 0.97 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
         >
-
-          <Row className="text-center">
-
-            <Col md={4}>
-              <h1 className="stat-number text-teal">
-                200+
-              </h1>
-              <p className="text-light">
-                Happy Investors
-              </p>
-            </Col>
-
-            <Col md={4}>
-              <h1 className="stat-number text-cyan">
-                45
-              </h1>
-              <p className="text-light">
-                Plots Available
-              </p>
-            </Col>
-
-            <Col md={4}>
-              <h1 className="stat-number text-teal">
-                6.2 Acres
-              </h1>
-              <p className="text-light">
-                Prime Residential Land
-              </p>
-            </Col>
-
+          <Row className="g-4 text-center">
+            {stats.map((stat, index) => (
+              <Col md={4} key={index}>
+                <div className="investment-stat-item">
+                  <h3>{stat.value}</h3>
+                  <p>{stat.label}</p>
+                </div>
+              </Col>
+            ))}
           </Row>
-
         </motion.div>
-
       </Container>
-
     </section>
   );
 }
