@@ -15,8 +15,8 @@ export default function Home() {
       <FeaturedSection />
       <VideoSection />
       <HowItWorks />  
+       <CtaBanner />
       <InvestmentOpportunities />
-      <CtaBanner />
     </div>
   );
 } 

@@ -51,7 +51,7 @@ export default function VideoSection() {
             <iframe
               width="100%"
               height="500"
-              src="https://www.youtube.com/embed/NI2lDQkM4Y4?autoplay=1&rel=0"
+              src="https://www.youtube.com/embed/H1oGY-7wI-4?si=L-e66hvR2ac4kGm9"
               title="Project Video"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen

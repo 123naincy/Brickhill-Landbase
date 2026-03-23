@@ -20,10 +20,15 @@ export default function NavbarComponent() {
             <Nav.Link as={NavLink} to="/">
               Home
             </Nav.Link>
-
+            <Nav.Link as={NavLink} to="/About">
+              About Us
+            </Nav.Link>
             <Nav.Link as={NavLink} to="/sindhudurg">
               Sindhudurg
             </Nav.Link>
+             {/* <Nav.Link as={NavLink} to="/event">
+            Event
+            </Nav.Link> */}
             <Nav.Link as={NavLink} to="/contact">
               Contact
             </Nav.Link>
