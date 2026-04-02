@@ -1,4 +1,4 @@
-import Hero from "../components/sections/HeroSection";
+import Hero from "../components/sections/sindhudurg/Hero";
 import Features from "../components/sections/sindhudurg/Features";
 import Gallery from "../components/sections/sindhudurg/Gallery";
 import Plots from "../components/sections/sindhudurg/Plots";

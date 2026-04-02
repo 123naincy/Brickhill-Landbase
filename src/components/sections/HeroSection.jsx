@@ -15,7 +15,7 @@ export default function HeroSection() {
 
       {/* Content */}
       <Container className="hero__content text-center text-white">
-        
+
         <h1 className="hero__title">
           PREMIUM RESIDENTIAL VILLA <br /> PLOTS NEAR GOA
         </h1>

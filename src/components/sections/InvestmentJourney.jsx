@@ -33,9 +33,9 @@ export default function LuxuryInvestment() {
               transition={{ duration: 0.7 }}
             >
 
-             <h2 className="luxury-title">
-  Invest in Premium <span>Land Opportunities</span>
-</h2>
+              <h2 className="luxury-title">
+                Invest in Premium <span>Land Opportunities</span>
+              </h2>
 
               <p className="luxury-desc">
                 Brickhill Landbase helps you secure premium land investments
