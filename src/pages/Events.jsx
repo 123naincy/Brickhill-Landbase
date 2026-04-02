@@ -1,14 +1,17 @@
-import React from "react";
-import EventsHero from "../components/sections/event/EventsHero";
-import EventsSection from "../components/sections/event/EventsSection";
+import Breadcrumb from "../components/sections/event/EventBreadcrumb";
+import EventsSection from "../components/sections/event/EventSections";
 
-function Events() {
+export default function Events() {
   return (
     <>
-      <EventsHero />
+      <Breadcrumb
+        title="Events & Experiences"
+        paths={[
+          { name: "Home", link: "/" },
+          { name: "Events" }
+        ]}
+      />
       <EventsSection />
     </>
   );
 }
-
-export default Events;

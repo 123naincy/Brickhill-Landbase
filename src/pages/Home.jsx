@@ -1,4 +1,4 @@
-import HeroSection from "../components/sections/sindhudurg/Hero";
+import HeroSection from "../components/sections/HeroSection";
 import FeaturedSection from "../components/sections/FeaturedSection";
 import WhyChoose from "../components/sections/WhyChoose";
 import VideoSection from "../components/sections/VideoSection";

@@ -1,5 +1,4 @@
-import Hero from "../components/sections/sindhudurg/Hero";
-import About from  "../components/sections/sindhudurg/About";
+import Hero from "../components/sections/HeroSection";
 import Features from "../components/sections/sindhudurg/Features";
 import Gallery from "../components/sections/sindhudurg/Gallery";
 import Plots from "../components/sections/sindhudurg/Plots";
@@ -9,7 +8,6 @@ import Testimonials from "../components/sections/sindhudurg/Testimonals";
 import Contact from "../components/sections/sindhudurg/Contact";
 import Footer from "../components/layout/Footer"
 import ArtisticImpression from "../components/sections/sindhudurg/ArtisticImpression";
-import WhySindhudurg from "../components/sections/sindhudurg/WhySinshudurg";
 function Sindhudurg(){
 return(
    <>
