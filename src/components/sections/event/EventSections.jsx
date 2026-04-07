@@ -1,93 +1,87 @@
+import { useState } from "react";
+import { Container, Row, Col, Card, Modal } from "react-bootstrap";
 import { upcomingEvents } from "../../data/eventsData";
 
 export default function EventsSection() {
-    return (
-        <section className="py-16 bg-[#F8F8F8]">
-            <div className="max-w-[1200px] mx-auto px-4">
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
-                {/* 🔵 Upcoming Events */}
-                <h2 className="text-3xl font-semibold mb-8 text-gray-900">
-                    Upcoming Events
-                </h2>
+  return (
+    <section className="events-section">
+      <Container>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-                    {upcomingEvents.map((event) => (
-                        <div
-                            key={event.id}
-                            className="bg-white rounded-xl overflow-hidden shadow hover:shadow-lg transition duration-300"
-                        >
-                            {/* Image */}
-                            <div className="relative">
-                                <img
-                                    src={event.image}
-                                    alt={event.title}
-                                    className="w-full h-52 object-cover"
-                                />
-                                <span className="absolute top-3 left-3 bg-[#C8A45D] text-white text-xs px-3 py-1 rounded">
-                                    {event.date}
-                                </span>
-                            </div>
+        <h2 className="section-title">Upcoming Events</h2>
 
-                            {/* Content */}
-                            <div className="p-4">
-                                <h3 className="text-lg font-semibold mb-2">
-                                    {event.title}
-                                </h3>
+        <Row>
+          {upcomingEvents.map((event) => (
+            <Col md={6} lg={4} key={event.id} className="mb-4">
 
-                                <p className="text-sm text-gray-600 mb-1">
-                                    📍 {event.location}
-                                </p>
-                                <p className="text-sm text-gray-600 mb-2">
-                                    ⏰ {event.time}
-                                </p>
-
-                                <p className="text-sm text-gray-500 mb-4">
-                                    {event.description}
-                                </p>
-
-                                <button className="w-full bg-[#0B3D2E] text-white py-2 rounded hover:bg-[#092f24]">
-                                    Register Now
-                                </button>
-                            </div>
-                        </div>
-                    ))}
+              <Card
+                className="event-card"
+                onClick={() => setSelectedEvent(event)}
+              >
+                {/* Image */}
+                <div className="event-img-wrapper">
+                  <Card.Img src={event.images[0]} />
+                  <span className="event-date">{event.date}</span>
                 </div>
 
-                {/* 🟣 Past Events */}
-                <h2 className="text-3xl font-semibold mb-8 text-gray-900">
-                    Past Events
-                </h2>
+                <Card.Body>
+                  <Card.Title>{event.title}</Card.Title>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {[
-                        "/images/past1.jpg",
-                        "/images/past2.jpg",
-                        "/images/past3.jpg",
-                        "/images/past4.jpg",
-                        "/images/past5.jpg",
-                        "/images/past6.jpg",
-                    ].map((img, index) => (
-                        <div
-                            key={index}
-                            className="relative overflow-hidden rounded-xl group"
-                        >
-                            <img
-                                src={img}
-                                alt="Past Event"
-                                className="w-full h-56 object-cover group-hover:scale-110 transition duration-300"
-                            />
+                  <p className="event-meta">📍 {event.location}</p>
+                  <p className="event-meta">⏰ {event.time}</p>
 
-                            {/* Overlay */}
-                            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                                <p className="text-white text-lg font-medium">
-                                    View Event
-                                </p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                  <Card.Text className="event-desc">
+                    {event.description}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
 
-            </div>
-        </section>
-    );
+            </Col>
+          ))}
+        </Row>
+
+        {/* 🔥 Modal */}
+        <Modal
+          show={!!selectedEvent}
+          onHide={() => setSelectedEvent(null)}
+          size="lg"
+          centered
+        >
+          {selectedEvent && (
+            <>
+              <Modal.Header closeButton>
+                <Modal.Title>{selectedEvent.title}</Modal.Title>
+              </Modal.Header>
+
+              <Modal.Body>
+
+                {/* Images Grid */}
+                <Row>
+                  {selectedEvent.images.map((img, index) => (
+                    <Col md={4} key={index} className="mb-3">
+                      <img
+                        src={img}
+                        alt="event"
+                        className="w-100 rounded"
+                      />
+                    </Col>
+                  ))}
+                </Row>
+
+                {/* Details */}
+                <p><strong>Date:</strong> {selectedEvent.date}</p>
+                <p><strong>Location:</strong> {selectedEvent.location}</p>
+                <p><strong>Time:</strong> {selectedEvent.time}</p>
+
+                <p>{selectedEvent.description}</p>
+
+              </Modal.Body>
+            </>
+          )}
+        </Modal>
+
+      </Container>
+    </section>
+  );
 }

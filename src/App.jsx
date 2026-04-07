@@ -5,6 +5,7 @@ import Sindhudurg from "./pages/Sindhudurg";
 import Footer from "./components/layout/Footer";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Events from "./pages/Events";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/sindhudurg" element={<Sindhudurg />} />
-          <Route path="/event" element={<Event />} />
+        <Route path="/events" element={<Events />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer />

@@ -1,39 +1,40 @@
-import { Link } from "react-router-dom";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
 
-export default function EventBreadcrumb({ title, paths }) {
-    return (
-        <section className="bg-gray-100 py-10">
-            <div className="max-w-[1200px] mx-auto px-4">
 
-                {/* Breadcrumb Path */}
-                <p className="text-sm text-gray-500 mb-2 flex items-center flex-wrap">
-                    {paths.map((item, index) => (
-                        <span key={index} className="flex items-center">
+function EventBreadcrumb() {
+  return (
+    <section className="about-hero">
+      <div className="about-hero-overlay"></div>
+      <div className="about-hero-glow about-hero-glow-left"></div>
+      <div className="about-hero-glow about-hero-glow-right"></div>
 
-                            {item.link ? (
-                                <Link
-                                    to={item.link}
-                                    className="text-[#0B3D2E] font-medium hover:underline"
-                                >
-                                    {item.name}
-                                </Link>
-                            ) : (
-                                <span className="text-gray-700">{item.name}</span>
-                            )}
+      <div className="about-hero-pattern">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
 
-                            {index !== paths.length - 1 && (
-                                <span className="mx-2">{">"}</span>
-                            )}
-                        </span>
-                    ))}
-                </p>
+      <div className="about-hero-content">
+        <p className="about-hero-label">PREMIUM COASTAL LIVING</p>
 
-                {/* Page Title */}
-                <h1 className="text-3xl font-semibold text-gray-900">
-                    {title}
-                </h1>
+        <h1 className="about-hero-title">
+          Our <span>Events</span>
+        </h1>
 
-            </div>
-        </section>
-    );
+        <p className="about-hero-text">
+          Crafted for refined living, inspired by the elegance of coastal luxury.
+        </p>
+
+        <div className="about-breadcrumb-box">
+          <Breadcrumb className="about-breadcrumb">
+            <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+            <Breadcrumb.Item href="/events">Events</Breadcrumb.Item>
+            <Breadcrumb.Item active>Upcoming Events</Breadcrumb.Item>
+          </Breadcrumb>
+        </div>
+      </div>
+    </section>
+  );
 }
+
+export default EventBreadcrumb;
