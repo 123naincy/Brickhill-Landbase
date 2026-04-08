@@ -5,16 +5,39 @@ export const upcomingEvents = [
     date: "19 December 2025",
     location: "Sector 79, Gurgaon",
     time: "11:00 AM",
-    images: ["/panipat-one.jpg", "/panipat-two.jpg", "/panipat-three.jpg","/panipat-four.jpg" , "/panipat-five.jpg", "/panipat-six.jpg" , "/panipat-seven.jpg", "/panipat-eight.jpg"],
+    images: ["/panipat-two.jpg", "/panipat-one.jpg","/panipat-three.JPG","/panipat-four.JPG" , "/panipat-five.JPG" ,  "/panipat-eight.jpg" ,],
     description: "Exclusive pre-launch with special pricing.",
   },
   {
     id: 2,
-    title: "Investor Meet – Noida",
+    title: "Investor Meet – Bhantinda",
     date: "20 April 2026",
-    location: "Noida Extension",
+    location: "Bhantinda",
     time: "3:00 PM",
-    images: ["/event (2).png", "/event (5).png", "/event (6).png"],
+    images: [
+  "/bhatinda-four.png",
+  "/bhatinda-group-picture.png",
+  "bhatinda-event-one.png",
+  "/bhatinda-two.png",
+  "/bhatinda-three.png",
+  "/bhatinda-five.png"
+],
+    description: "High ROI investment discussion.",
+  },
+   {
+    id: 3,
+    title: "Aranaya Event – Goa",
+    date: "20 April 2026",
+    location: "Goa,Sindhudurg",
+    time: "3:00 PM",
+    images: [
+  "/goa-one.jpeg",
+  "/goa-two.jpeg",
+  "goa-six.jpeg",
+  "/goa-three.jpeg",
+  "/goa-four.jpeg",
+  "/goa-five.jpeg"
+],
     description: "High ROI investment discussion.",
   },
 ];
