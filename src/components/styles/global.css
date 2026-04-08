@@ -1310,7 +1310,9 @@
   height: 500px;
   border: none;
 }
-
+.video-text{
+  color: #fff;
+}
 /* ================= RESPONSIVE ================= */
 
 @media (max-width: 991px) {
@@ -1354,6 +1356,7 @@
     height: 250px;
   }
 }
+
 /* Sindhudurg */
 
 .about-split-luxury {
@@ -5242,3 +5245,5 @@
   object-fit: cover;
   border-radius: 6px;
 }
+
+
