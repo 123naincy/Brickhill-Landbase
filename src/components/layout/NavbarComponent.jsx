@@ -32,15 +32,7 @@ export default function NavbarComponent() {
             <Nav.Link as={NavLink} to="/contact">
               Contact
             </Nav.Link>
-
           </Nav>
-
-          <Nav>
-            <Nav.Link as={NavLink} to="/login">
-              Sign In
-            </Nav.Link>
-          </Nav>
-
         </Navbar.Collapse>
 
       </Container>

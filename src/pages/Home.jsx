@@ -6,6 +6,7 @@ import InvestmentJourney from "../components/sections/InvestmentJourney";
 import HowItWorks from "../components/sections/HowItWorks";
 import InvestmentOpportunities from "../components/sections/InvestmentOpportunities";
 import CtaBanner from "../components/sections/CtaBanner";
+import FloatingIcons from "../components/sections/FloatingIcons";
 export default function Home() {
   return (
     <div className="app-shell">
@@ -17,6 +18,7 @@ export default function Home() {
       <HowItWorks />  
        <CtaBanner />
       <InvestmentOpportunities />
+      <FloatingIcons />
     </div>
   );
 } 

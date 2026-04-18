@@ -358,6 +358,9 @@
   margin: 0 12px;
   transition: all 0.3s ease;
 }
+.navbar-toggler{
+  background-color:#fff;
+}
 
 /* Hover Effect */
 
@@ -421,7 +424,14 @@
   background: var(--primary-gradient);
   border: none;
 }
+.hero__cta .btn {
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
 
+.hero__cta .btn:hover {
+  transform: translateY(-2px);
+}
 
 /* Animation */
 
@@ -440,7 +450,7 @@
 /* why choose brickhill */
 .why-section {
   position: relative;
-  padding: 100px 0;
+  padding: 1rem 0;
   background: linear-gradient(180deg, #020b22 0%, #06142f 100%);
   overflow: hidden;
 }
@@ -5244,5 +5254,70 @@
   object-fit: cover;
   border-radius: 6px;
 }
+/* Floating icons */
+/* Container */
+.floating-icons {
+  position: fixed;
+  right: 20px;
+  bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 999;
+}
 
+/* Common Button */
+.float-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 24px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  transition: all 0.3s ease;
+  position: relative;
+}
 
+/* CALL BUTTON */
+.float-btn.call {
+  background: #ff9800;
+  animation: pulse 1.8s infinite;
+}
+
+/* WHATSAPP BUTTON */
+.float-btn.whatsapp {
+  background: #25D366;
+  animation: bounce 2s infinite;
+}
+
+/* 🔥 Hover Effect */
+.float-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+}
+
+/* 💥 Pulse Animation (Call) */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255,152,0, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(255,152,0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255,152,0, 0);
+  }
+}
+
+/* 🚀 Bounce Animation (WhatsApp) */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
