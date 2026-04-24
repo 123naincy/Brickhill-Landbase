@@ -213,7 +213,7 @@ export default function HeroSection() {
           <Button 
             variant="outline-light" 
             size="lg" 
-            onClick={() => window.open("https://wa.me/918383060833", "_blank")}
+            onClick={() => window.open("https://wa.me/+91-8448220334", "_blank")}
           >
             Enquire Now
           </Button>

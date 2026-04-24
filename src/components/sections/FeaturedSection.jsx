@@ -99,9 +99,9 @@ export default function FeaturedSection() {
           </Col>
 
           <Col lg={4} className="text-lg-end mt-3 mt-lg-0">
-            <Link to="/properties" className="view-all-btn">
+            {/* <Link to="/properties" className="view-all-btn">
               Explore All Projects →
-            </Link>
+            </Link> */}
           </Col>
         </Row>
 

@@ -49,12 +49,11 @@ export default function WhyChoose() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="why-title">
-            Why Choose Brickhill Landbase?
+           Why Choose BHL for Land Investment in India?
           </h2>
 
           <p className="why-sub">
-            We provide more than just land we create opportunities for
-            investment, growth, and long-term prosperity.
+            BHL offers premium residential and commercial plots in India with high ROI potential, verified legal documentation, and strategic locations for long-term investment growth.
           </p>
         </motion.div>
 

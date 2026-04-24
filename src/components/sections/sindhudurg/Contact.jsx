@@ -157,7 +157,7 @@ export default function Contact() {
                 <Phone size={24} />
                 <div>
                   <small>Phone</small>
-                  <p>+91-9311924486</p>
+                  <p>+91-83959945524</p>
                 </div>
               </div>
 

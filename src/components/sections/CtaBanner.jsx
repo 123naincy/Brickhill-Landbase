@@ -150,7 +150,7 @@ export default function CtaBanner() {
               {/* ✅ Call Button → Open Form */}
              <Button 
   className="cta-btn primary-btn"
-  onClick={() => window.location.href = "tel:+918383060833"}
+  onClick={() => window.location.href = "tel:++91-8448220334"}
 >
   <FaPhoneAlt /> Call Now
 </Button>

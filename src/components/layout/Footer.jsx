@@ -79,7 +79,7 @@ the most competitive real estate prices.
 <h5>Contact Us</h5>
 
 <p><FaMapMarkerAlt/> Gurugram, India</p>
-<p><FaPhone/> +91-9311924486</p>
+<p><FaPhone/> +91-83959945524</p>
 <p><FaEnvelope/> info@bhllandbase.com</p>
 
 </Col>
