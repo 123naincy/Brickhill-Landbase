@@ -1,0 +1,35 @@
+RewriteEngine On
+
+# One host: https://www. Hostinger already sends http to https.
+RewriteCond %{HTTP_HOST} !^www\.brickhillandbase\.com$ [NC]
+RewriteRule ^ https://www.brickhillandbase.com%{REQUEST_URI} [R=301,L]
+
+# One URL shape: no trailing slash, except real folders such as /assets/
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ /$1 [R=301,L,QSA]
+
+# Old and direct file addresses -> the public URL
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^index\.html$ / [R=301,L,QSA]
+
+RewriteCond %{THE_REQUEST} \s/+about\.html[\s?] [NC]
+RewriteRule ^about\.html$ /about [R=301,L,QSA]
+
+RewriteCond %{THE_REQUEST} \s/+events\.html[\s?] [NC]
+RewriteRule ^events\.html$ /events [R=301,L,QSA]
+
+RewriteCond %{THE_REQUEST} \s/+contact\.html[\s?] [NC]
+RewriteRule ^contact\.html$ /contact [R=301,L,QSA]
+
+RewriteCond %{THE_REQUEST} \s/+(?:sindhudurg|bhl-aaranya)\.html[\s?] [NC]
+RewriteRule ^(?:sindhudurg|bhl-aaranya)\.html$ /sindhudurg [R=301,L,QSA]
+
+RewriteCond %{THE_REQUEST} \s/+aaranya\.html[\s?] [NC]
+RewriteRule ^aaranya\.html$ /aaranya [R=301,L,QSA]
+
+# Public URLs. bhl-aaranya.html is the website project page. aaranya.html is the campaign landing page.
+RewriteRule ^about$ about.html [L]
+RewriteRule ^sindhudurg$ bhl-aaranya.html [L]
+RewriteRule ^events$ events.html [L]
+RewriteRule ^contact$ contact.html [L]
+RewriteRule ^aaranya$ aaranya.html [L]
