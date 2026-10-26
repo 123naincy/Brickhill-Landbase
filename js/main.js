@@ -146,14 +146,24 @@ async function submitForm(event, form) {
       return;
     }
 
+    const plotNumber = (data.plotNumber || "").trim();
+    const plotArea = (data.plotArea || "").trim();
+    const project = (data.project || "").trim();
+    let message = (data.message || "").trim();
+    if (plotNumber && !message.includes(plotNumber)) {
+      message = `${message}${message ? "\n\n" : ""}Interested plot: ${plotNumber}${project ? ` at ${project}` : ""}${plotArea ? ` (${plotArea})` : ""}.`;
+    }
     const body = new URLSearchParams({
       name: (data.name || "").trim(),
       email: (data.email || "").trim(),
       phone: (data.phone || "").trim(),
-      message: (data.message || "").trim(),
+      message,
       subject: (data.subject || "").trim(),
       source: form.dataset.source || "Website"
     });
+    if (project) body.append("project", project);
+    if (plotNumber) body.append("plotNumber", plotNumber);
+    if (plotArea) body.append("plotArea", plotArea);
     const result = await postJson(SCRIPTS.visit, body);
     if (result.result !== "success") throw new Error("Submission failed");
 
