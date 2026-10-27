@@ -1,8 +1,8 @@
 /**
  * Interactive BHL Aaranya master plan.
  *
- * Plot outlines are a visual reading of the photographed layout drawing.
- * They are easy to nudge in buildGeometry() and are not survey coordinates.
+ * Plot outlines are traced from the layout drawing.
+ * They follow that sheet and are not survey coordinates.
  * Facts (area, survey, status) come only from plot-inventory.js.
  */
 (function () {
@@ -10,29 +10,57 @@
   var STATUS_LABEL = { available: "Available", hold: "Hold", sold: "Sold" };
   var TEMPLATE = /^I would like to enquire about Plot \d+/;
 
-  /**
-   * Layout constants, in SVG units. Roads are the gaps between these edges.
-   * North is at the top, the river is on the east, entry is on the west.
-   */
-  var L = {
-    northBottom: 240,
-    blockTop: 284,
-    blockBottom: 521,
-    twelveTop: 521,
-    twelveBottom: 582,
-    midTop: 582,
-    midBottom: 792,
-    lowTop: 792,
-    lowBottom: 836,
-    northLeft: 150,
-    plotW: 84,
-    spineLeft: 420,
-    spineRight: 468,
-    islandRight: 774,
-    sideRight: 822,
-    courtLeft: 36,
-    westLeft: 214
-  };
+  var SHEET = { x: 16, y: 139.37, w: 1028.0, h: 981.27 };
+
+  function buildGeometry() {
+    return [
+      { id: "01", points: [[493.1, 476.3], [502.9, 523.0], [467.3, 543.9], [424.2, 550.1], [412.0, 494.7], [491.9, 477.5]] },
+      { id: "02", points: [[625.9, 444.3], [649.3, 500.9], [579.2, 519.3], [546.0, 504.6], [536.1, 464.0], [624.7, 445.6]] },
+      { id: "03", points: [[728.0, 422.2], [746.4, 467.7], [718.1, 489.8], [654.2, 499.7], [634.5, 443.1], [726.7, 423.4]] },
+      { id: "04", points: [[698.5, 366.9], [725.5, 418.5], [632.1, 438.2], [613.6, 385.3], [697.2, 368.1]] },
+      { id: "05", points: [[651.7, 299.2], [677.6, 304.1], [702.2, 361.9], [611.2, 380.4], [590.3, 322.6], [650.5, 300.5]] },
+      { id: "06", points: [[582.9, 323.8], [606.2, 382.8], [520.2, 398.8], [514.0, 348.4], [581.6, 325.0]] },
+      { id: "07", points: [[602.6, 387.8], [627.1, 439.4], [534.9, 459.1], [522.6, 405.0], [601.3, 389.0]] },
+      { id: "08", points: [[473.4, 418.5], [491.9, 471.4], [409.5, 488.6], [399.7, 435.7], [472.2, 419.7]] },
+      { id: "09", points: [[451.3, 365.6], [473.4, 382.8], [477.1, 413.6], [396.0, 430.8], [382.4, 370.5], [403.3, 371.8], [407.0, 371.8], [450.1, 366.9]] },
+      { id: "10", points: [[185.7, 259.9], [230.0, 261.1], [252.1, 269.7], [261.9, 325.0], [204.1, 337.3], [185.7, 261.1]] },
+      { id: "11", points: [[255.8, 263.6], [336.9, 267.3], [343.1, 314.0], [266.9, 325.0], [255.8, 264.8]] },
+      { id: "12", points: [[341.9, 267.3], [424.2, 270.9], [423.0, 326.3], [393.5, 328.7], [348.0, 322.6], [341.9, 268.5]] },
+      { id: "13", points: [[498.0, 237.7], [516.5, 296.8], [427.9, 326.3], [429.2, 272.2], [468.5, 261.1], [496.8, 239.0]] },
+      { id: "14", points: [[553.4, 194.7], [574.3, 279.6], [521.4, 296.8], [504.2, 242.7], [552.1, 195.9]] },
+      { id: "15", points: [[590.3, 166.4], [603.8, 170.1], [612.4, 207.0], [617.3, 227.9], [625.9, 263.6], [578.0, 275.9], [558.3, 191.0], [589.0, 167.7]] },
+      { id: "16", points: [[608.7, 171.3], [676.3, 192.2], [683.7, 237.7], [630.8, 261.1], [608.7, 172.6]] },
+      { id: "17", points: [[684.9, 195.9], [780.9, 225.4], [787.0, 239.0], [757.5, 251.3], [744.0, 257.4], [709.5, 272.2], [688.6, 243.9], [684.9, 197.2]] },
+      { id: "18", points: [[791.9, 241.4], [814.1, 290.6], [736.6, 325.0], [723.1, 305.4], [714.4, 275.9], [790.7, 242.7]] },
+      { id: "19", points: [[814.1, 295.5], [825.1, 315.2], [828.8, 322.6], [837.4, 344.7], [762.4, 377.9], [748.9, 365.6], [737.8, 330.0], [812.8, 296.8]] },
+      { id: "20", points: [[839.9, 348.4], [860.8, 398.8], [783.3, 433.3], [772.2, 419.7], [759.9, 384.1], [838.6, 349.6]] },
+      { id: "21", points: [[859.6, 403.7], [884.1, 451.7], [807.9, 486.1], [795.6, 472.6], [784.5, 436.9], [858.3, 405.0]] },
+      { id: "22", points: [[885.4, 456.6], [906.3, 505.8], [828.8, 540.2], [819.0, 526.7], [807.9, 491.1], [884.1, 457.9]] },
+      { id: "23", points: [[908.7, 509.5], [929.6, 558.7], [852.2, 594.3], [839.9, 574.7], [831.3, 543.9], [907.5, 510.7]] },
+      { id: "24", points: [[929.6, 564.8], [951.8, 614.0], [934.6, 621.4], [875.5, 648.5], [863.2, 628.8], [854.6, 598.0], [928.4, 566.1]] },
+      { id: "25", points: [[954.2, 617.7], [975.1, 666.9], [900.1, 701.3], [886.6, 682.9], [876.8, 652.1], [953.0, 618.9]] },
+      { id: "26", points: [[976.4, 671.8], [998.5, 721.0], [922.3, 755.4], [910.0, 737.0], [900.1, 706.2], [975.1, 673.0]] },
+      { id: "27", points: [[999.7, 725.9], [1030.5, 796.0], [940.7, 798.5], [928.4, 780.0], [924.7, 759.1], [998.5, 727.1]] },
+      { id: "28", points: [[826.3, 714.9], [858.3, 723.5], [890.3, 798.5], [817.7, 799.7], [800.5, 723.5], [825.1, 716.1]] },
+      { id: "29", points: [[793.1, 724.7], [812.8, 799.7], [746.4, 793.6], [734.1, 738.2], [791.9, 725.9]] },
+      { id: "30", points: [[724.3, 739.4], [742.7, 802.2], [673.9, 816.9], [660.3, 754.2], [723.1, 740.7]] },
+      { id: "31", points: [[635.8, 755.4], [655.4, 755.4], [670.2, 824.3], [624.7, 846.4], [595.2, 776.3], [634.5, 756.7]] },
+      { id: "32", points: [[640.7, 646.0], [662.8, 707.5], [600.1, 721.0], [575.5, 707.5], [565.7, 663.2], [639.4, 647.2]] },
+      { id: "33", points: [[720.6, 628.8], [742.7, 690.3], [667.7, 705.0], [649.3, 644.8], [719.4, 630.0]] },
+      { id: "34", points: [[805.4, 610.3], [830.0, 655.8], [825.1, 670.6], [746.4, 685.3], [729.2, 627.5], [773.5, 617.7], [804.2, 611.6]] },
+      { id: "35", points: [[756.3, 536.6], [780.9, 545.2], [807.9, 605.4], [774.7, 611.6], [745.2, 618.9], [726.7, 621.4], [704.6, 548.8], [755.0, 537.8]] },
+      { id: "36", points: [[693.5, 550.1], [723.1, 623.9], [648.0, 638.6], [640.7, 615.3], [625.9, 564.8], [692.3, 551.3]] },
+      { id: "37", points: [[614.8, 567.3], [635.8, 615.3], [625.9, 644.8], [564.4, 658.3], [552.1, 622.6], [560.7, 579.6], [613.6, 568.5]] },
+      { id: "38", points: [[484.5, 595.6], [504.2, 604.2], [518.9, 662.0], [445.2, 678.0], [427.9, 607.9], [483.3, 596.8]] },
+      { id: "39", points: [[515.2, 666.9], [533.7, 722.2], [458.7, 735.8], [446.4, 682.9], [514.0, 668.1]] },
+      { id: "40", points: [[534.9, 727.1], [544.8, 809.5], [475.9, 807.1], [461.1, 745.6], [533.7, 728.4]] },
+      { id: "41", points: [[490.7, 853.8], [499.3, 901.8], [425.5, 922.7], [345.6, 921.4], [336.9, 887.0], [489.4, 855.0]] },
+      { id: "42", points: [[496.8, 853.8], [576.7, 857.5], [586.6, 884.5], [584.1, 920.2], [537.4, 919.0], [507.9, 917.7], [496.8, 855.0]] },
+      { id: "43", points: [[507.9, 922.7], [584.1, 925.1], [586.6, 944.8], [584.1, 986.6], [512.8, 984.1], [507.9, 923.9]] },
+      { id: "44", points: [[511.6, 989.1], [584.1, 991.5], [587.8, 1011.2], [585.3, 1051.8], [509.1, 1049.3], [511.6, 990.3]] },
+      { id: "45", points: [[509.1, 1054.2], [564.4, 1056.7], [584.1, 1056.7], [585.3, 1119.4], [505.4, 1108.3], [507.9, 1055.5]] }
+    ];
+  }
 
   function el(name, attrs, parent) {
     var node = document.createElementNS(SVG_NS, name);
@@ -47,168 +75,6 @@
 
   function pointsAttr(points) {
     return points.map(function (p) { return p[0] + "," + p[1]; }).join(" ");
-  }
-
-  function roundedRect(x, y, w, h, r, corners) {
-    var has = function (c) { return corners.indexOf(c) !== -1; };
-    var pts = [];
-    pts.push(has("tl") ? [x + r, y] : [x, y]);
-    pts.push(has("tr") ? [x + w - r, y] : [x + w, y]);
-    if (has("tr")) pts.push([x + w, y + r]);
-    if (has("br")) {
-      pts.push([x + w, y + h - r]);
-      pts.push([x + w - r, y + h]);
-    } else {
-      pts.push([x + w, y + h]);
-    }
-    if (has("bl")) {
-      pts.push([x + r, y + h]);
-      pts.push([x, y + h - r]);
-    } else {
-      pts.push([x, y + h]);
-    }
-    if (has("tl")) pts.push([x, y + r]);
-    return pts;
-  }
-
-  function cell(x, y, w, h, corners) {
-    if (!corners || !corners.length) return [[x, y], [x + w, y], [x + w, y + h], [x, y + h]];
-    return roundedRect(x, y, w, h, 16, corners);
-  }
-
-  /**
-   * Plot positions follow the layout photograph:
-   * north row, courts column, two internal blocks, river frontage,
-   * southern row, and the tail along the southbound 9 m road.
-   * Swap an id here if a number needs to move; do not edit inventory for that.
-   */
-  function buildGeometry() {
-    var plots = [];
-    var tops = [196, 168, 138, 106, 78, 56, 48, 86, 138];
-    var northIds = ["01", "02", "03", "04", "05", "06", "10", "11"];
-    northIds.forEach(function (id, i) {
-      var x = L.northLeft + i * L.plotW;
-      plots.push({
-        id: id,
-        points: [[x, tops[i]], [x + L.plotW, tops[i + 1]], [x + L.plotW, L.northBottom], [x, L.northBottom]]
-      });
-    });
-
-    // Northeast corner plot, above the river frontage.
-    plots.push({
-      id: "32",
-      points: [[822, 138], [948, 176], [930, L.northBottom], [822, L.northBottom]]
-    });
-
-    // Between the sports courts and the central 9 m road. Top to bottom: 8, 9, 7.
-    var westH = (L.blockBottom - L.blockTop) / 3;
-    ["08", "09", "07"].forEach(function (id, i) {
-      var corners = i === 0 ? ["tr"] : i === 2 ? ["br"] : [];
-      plots.push({
-        id: id,
-        points: cell(L.westLeft, L.blockTop + i * westH, L.spineLeft - L.westLeft, westH, corners)
-      });
-    });
-
-    // Upper internal block, three by three, left to right, top to bottom.
-    var colW = (L.islandRight - L.spineRight) / 3;
-    var rowH = (L.blockBottom - L.blockTop) / 3;
-    var upper = ["12", "13", "14", "15", "16", "17", "18", "19", "20"];
-    upper.forEach(function (id, i) {
-      var col = i % 3;
-      var row = Math.floor(i / 3);
-      var corners = [];
-      if (row === 0 && col === 0) corners.push("tl");
-      if (row === 0 && col === 2) corners.push("tr");
-      if (row === 2 && col === 0) corners.push("bl");
-      if (row === 2 && col === 2) corners.push("br");
-      plots.push({
-        id: id,
-        points: cell(L.spineRight + col * colW, L.blockTop + row * rowH, colW, rowH, corners)
-      });
-    });
-
-    // East frontage, top to bottom. 27 sits on the southeast marker.
-    var riverIds = ["33", "34", "35", "36", "37", "27"];
-    var riverY = [284, 394, 508, 622, 736, 850, 1016];
-    var riverX = [936, 956, 972, 978, 966, 946, 918];
-    riverIds.forEach(function (id, i) {
-      plots.push({
-        id: id,
-        points: [
-          [L.sideRight, riverY[i]],
-          [riverX[i], riverY[i]],
-          [riverX[i + 1], riverY[i + 1]],
-          [L.sideRight, riverY[i + 1]]
-        ]
-      });
-    });
-
-    // Between the pool garden and the central road. Top to bottom: 38, 39, 40.
-    var midH = (L.midBottom - L.midTop) / 3;
-    ["38", "39", "40"].forEach(function (id, i) {
-      var corners = i === 0 ? ["tr"] : i === 2 ? ["br"] : [];
-      plots.push({
-        id: id,
-        points: cell(L.westLeft, L.midTop + i * midH, L.spineLeft - L.westLeft, midH, corners)
-      });
-    });
-
-    // Lower internal block, three by two.
-    var lowH = (L.midBottom - L.midTop) / 2;
-    var lower = ["21", "22", "23", "24", "25", "26"];
-    lower.forEach(function (id, i) {
-      var col = i % 3;
-      var row = Math.floor(i / 3);
-      var corners = [];
-      if (row === 0 && col === 0) corners.push("tl");
-      if (row === 0 && col === 2) corners.push("tr");
-      if (row === 1 && col === 0) corners.push("bl");
-      if (row === 1 && col === 2) corners.push("br");
-      plots.push({
-        id: id,
-        points: cell(L.spineRight + col * colW, L.midTop + row * lowH, colW, lowH, corners)
-      });
-    });
-
-    // South of the lower 9 m road, left to right: 31, 30, 29, 28.
-    var southIds = ["31", "30", "29", "28"];
-    var southW = (L.islandRight - L.spineRight) / 4;
-    var southBottom = [1004, 984, 960, 934, 906];
-    southIds.forEach(function (id, i) {
-      var x = L.spineRight + i * southW;
-      plots.push({
-        id: id,
-        points: [
-          [x, L.lowBottom],
-          [x + southW, L.lowBottom],
-          [x + southW, southBottom[i + 1]],
-          [x, southBottom[i]]
-        ]
-      });
-    });
-
-    // Tail west of the southbound 9 m road. 41 is the large corner plot.
-    var tail = [
-      { id: "41", y0: 792, y1: 910, x0: 158, x1: 178 },
-      { id: "42", y0: 910, y1: 990, x0: 178, x1: 198 },
-      { id: "43", y0: 990, y1: 1062, x0: 198, x1: 218 },
-      { id: "44", y0: 1062, y1: 1134, x0: 218, x1: 240 },
-      { id: "45", y0: 1134, y1: 1210, x0: 240, x1: 264 }
-    ];
-    tail.forEach(function (item) {
-      plots.push({
-        id: item.id,
-        points: [
-          [item.x0, item.y0],
-          [L.spineLeft, item.y0],
-          [L.spineLeft, item.y1],
-          [item.x1, item.y1]
-        ]
-      });
-    });
-
-    return plots;
   }
 
   function centroid(points) {
@@ -282,7 +148,7 @@
       "aria-labelledby": "mpSvgTitle mpSvgDesc"
     });
     el("title", { id: "mpSvgTitle" }, svg).textContent = "BHL Aaranya illustrative master plan";
-    el("desc", { id: "mpSvgDesc" }, svg).textContent = "Forty-five residential plots, internal roads, amenities, and the river. Outlines are a visual interpretation of the layout drawing, not a survey plan.";
+    el("desc", { id: "mpSvgDesc" }, svg).textContent = "Forty-five residential plots, internal roads, amenities, and the river. Outlines follow the layout drawing and are not a survey plan.";
 
     drawSheet(svg);
     var plotLayer = el("g", { id: "mpPlots" }, svg);
@@ -329,154 +195,33 @@
 
     function drawSheet(parent) {
       el("rect", { width: "1060", height: "1260", fill: "#e7f0e4" }, parent);
-      drawTrees(parent, outsideTrees());
-      el("path", {
-        d: "M930,20 C1040,160 1052,420 1030,700 C1010,940 960,1100 900,1220 L1060,1220 L1060,20 Z",
-        fill: "#8eb7dc"
+      var image = el("image", {
+        href: "assets/aaranya-sheet.jpg",
+        x: SHEET.x,
+        y: SHEET.y,
+        width: SHEET.w,
+        height: SHEET.h,
+        preserveAspectRatio: "none"
       }, parent);
-      el("path", {
-        d: "M948,70 C1030,200 1040,460 1018,720 C998,960 952,1100 912,1200",
-        fill: "none",
-        stroke: "#6ea2cb",
-        "stroke-width": "10",
-        "stroke-linecap": "round"
-      }, parent);
-      el("text", {
-        class: "mp-water-label",
-        x: "990",
-        y: "560",
-        transform: "rotate(78 990 560)"
-      }, parent).textContent = "RIVER";
-
-      // Circulation. Gaps between plots read as these roads.
-      rectRoad(parent, 0, L.twelveTop, L.spineRight, L.twelveBottom - L.twelveTop);
-      rectRoad(parent, L.northLeft, L.northBottom, L.sideRight - L.northLeft, L.blockTop - L.northBottom);
-      rectRoad(parent, L.spineLeft, L.northBottom, L.spineRight - L.spineLeft, 1224 - L.northBottom);
-      rectRoad(parent, L.islandRight, L.northBottom, L.sideRight - L.islandRight, 1016 - L.northBottom);
-      rectRoad(parent, L.sideRight, L.northBottom, 130, L.blockTop - L.northBottom);
-      rectRoad(parent, L.spineRight, L.midBottom, L.sideRight - L.spineRight, L.lowBottom - L.midBottom);
-
-      drawCourts(parent);
-      drawGarden(parent);
-      drawTrees(parent, gardenTrees());
-    }
-
-    function rectRoad(parent, x, y, w, h) {
-      el("rect", { x: x, y: y, width: w, height: h, fill: "#c9c4d6" }, parent);
-    }
-
-    function drawCourts(parent) {
-      var x = L.courtLeft;
-      var y = L.blockTop + 8;
-      var w = L.westLeft - L.courtLeft - 8;
-      var h = L.blockBottom - L.blockTop - 16;
-      el("rect", { x: x, y: y, width: w, height: h, rx: "18", fill: "#d7e4c6" }, parent);
-      el("rect", {
-        x: x + 10, y: y + 10, width: w - 20, height: h - 20, rx: "14",
-        fill: "none", stroke: "#c45b4e", "stroke-width": "7"
-      }, parent);
-      var caption = el("text", {
-        class: "mp-amenity-label",
-        x: x + w / 2,
-        y: y + 26,
-        "text-anchor": "middle"
-      }, parent);
-      caption.textContent = "SPORTS COURTS";
-      court(parent, x + 24, y + 36, w - 48, (h - 86) / 2);
-      court(parent, x + 24, y + 48 + (h - 86) / 2, w - 48, (h - 86) / 2);
-    }
-
-    function court(parent, x, y, w, h) {
-      el("rect", { x: x, y: y, width: w, height: h, fill: "#f4efe4", stroke: "#c9bfae", "stroke-width": "1" }, parent);
-      el("line", { x1: x + w / 2, y1: y, x2: x + w / 2, y2: y + h, stroke: "#ddd4c6", "stroke-width": "1" }, parent);
-    }
-
-    function drawGarden(parent) {
-      var x = L.courtLeft;
-      var y = L.midTop + 6;
-      var w = L.westLeft - L.courtLeft - 8;
-      var h = L.midBottom - L.midTop - 12;
-      el("rect", { x: x, y: y, width: w, height: h, rx: "16", fill: "#cfe0b4" }, parent);
-      el("rect", { x: x + 16, y: y + 36, width: 52, height: 40, fill: "#f7f4ee", stroke: "#bfb7a8", "stroke-width": "1" }, parent);
-      el("ellipse", { cx: x + w * 0.48, cy: y + h * 0.42, rx: 28, ry: 18, fill: "#3c86c2" }, parent);
-      el("polygon", {
-        points: pointsAttr(octagon(x + w * 0.72, y + h * 0.72, 12)),
-        fill: "#f3ecdf",
-        stroke: "#c4b8a4",
-        "stroke-width": "1"
-      }, parent);
-      el("text", {
-        class: "mp-amenity-label",
-        x: x + w / 2,
-        y: y + 18,
-        "text-anchor": "middle"
-      }, parent).textContent = "POOL & CLUBHOUSE";
-    }
-
-    function octagon(cx, cy, r) {
-      var pts = [];
-      for (var i = 0; i < 8; i += 1) {
-        var a = (Math.PI / 8) + i * (Math.PI / 4);
-        pts.push([cx + Math.cos(a) * r, cy + Math.sin(a) * r]);
-      }
-      return pts;
-    }
-
-    function drawTrees(parent, spots) {
-      var g = el("g", { "aria-hidden": "true" }, parent);
-      spots.forEach(function (spot) {
-        el("circle", { cx: spot[0], cy: spot[1], r: spot[2], fill: "#b7c98f" }, g);
-        el("circle", { cx: spot[0] - 1, cy: spot[1] - 1, r: Math.max(1.5, spot[2] * 0.45), fill: "#d5e4b8" }, g);
-      });
-    }
-
-    function outsideTrees() {
-      return [
-        [70, 80, 11], [110, 120, 8], [48, 160, 13], [90, 210, 7],
-        [42, 340, 12], [24, 430, 8], [58, 640, 11], [30, 860, 14],
-        [70, 980, 9], [40, 1100, 12], [96, 1180, 8],
-        [520, 1090, 14], [600, 1140, 10], [700, 1080, 16], [640, 1200, 11],
-        [860, 1100, 13], [940, 1140, 9], [800, 1180, 12],
-        [990, 180, 8], [1010, 260, 11], [1000, 360, 7]
-      ];
-    }
-
-    function gardenTrees() {
-      return [
-        [58, 620, 6], [150, 700, 5], [70, 750, 6], [160, 640, 5], [120, 760, 5]
-      ];
+      image.setAttributeNS("http://www.w3.org/1999/xlink", "href", "assets/aaranya-sheet.jpg");
     }
 
     function drawLabels(parent) {
-      var g = el("g", { "aria-hidden": "true", class: "mp-roads" }, parent);
-      roadText(g, "9 M WIDE ROAD", 560, 266);
-      roadText(g, "12 M WIDE ROAD", 250, 556);
-      roadText(g, "ENTRY  >>", 18, 556, "start");
-      roadText(g, "9 M WIDE ROAD", 620, 818);
-      verticalText(g, "9 M WIDE ROAD", 444, 430);
-      verticalText(g, "9 M WIDE ROAD", 444, 1040);
-      verticalText(g, "9 M WIDE ROAD", 798, 560);
-      // Marker drawn on the southeast plot in the layout sheet.
-      el("circle", { cx: "878", cy: "940", r: "7", fill: "#2f6fbf", stroke: "#f7f4ee", "stroke-width": "2" }, g);
-    }
-
-    function roadText(parent, value, x, y, anchor) {
-      el("text", {
-        class: "mp-road-label",
-        x: x,
-        y: y,
-        "text-anchor": anchor || "middle"
-      }, parent).textContent = value;
-    }
-
-    function verticalText(parent, value, x, y) {
-      el("text", {
-        class: "mp-road-label",
-        x: x,
-        y: y,
-        "text-anchor": "middle",
-        transform: "rotate(-90 " + x + " " + y + ")"
-      }, parent).textContent = value;
+      var plot = geometry.filter(function (shape) { return shape.id === "27"; })[0];
+      if (!plot) return;
+      var corner = plot.points[0];
+      plot.points.forEach(function (point) {
+        if (point[0] + point[1] > corner[0] + corner[1]) corner = point;
+      });
+      var center = centroid(plot.points);
+      el("circle", {
+        cx: (center[0] * 0.42 + corner[0] * 0.58).toFixed(1),
+        cy: (center[1] * 0.42 + corner[1] * 0.58).toFixed(1),
+        r: "7",
+        fill: "#2f6fbf",
+        stroke: "#f7f4ee",
+        "stroke-width": "2"
+      }, parent);
     }
 
     function bindPlots() {

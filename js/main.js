@@ -86,8 +86,11 @@ function initForms() {
 
   document.querySelectorAll("form[data-form]").forEach((form) => {
     form.addEventListener("submit", (event) => submitForm(event, form));
-    form.querySelectorAll("input, textarea").forEach((field) => {
+    form.querySelectorAll("input, textarea, select").forEach((field) => {
       field.addEventListener("blur", () => validateField(field, form));
+      if (field.type === "checkbox") {
+        field.addEventListener("change", () => validateField(field, form));
+      }
       if (field.name === "phone") {
         field.addEventListener("input", () => {
           field.value = field.value.replace(/\D/g, "").slice(0, 10);
@@ -192,6 +195,14 @@ async function submitForm(event, form) {
 function validateField(field, form) {
   const value = field.value.trim();
   let message = "";
+
+  if (field.type === "checkbox") {
+    message = field.required && !field.checked ? "Please confirm consent" : "";
+    field.classList.toggle("is-invalid", Boolean(message));
+    const feedback = field.parentElement.querySelector(".invalid-feedback");
+    if (feedback) feedback.textContent = message;
+    return !message;
+  }
 
   if (field.type === "radio") {
     const chosen = form.querySelector(`input[name="${field.name}"]:checked`);

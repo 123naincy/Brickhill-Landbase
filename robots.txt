@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# /aaranya is a noindex campaign page. It stays crawlable so the noindex tag can be read.
+# Do not block CSS, JavaScript, or image files.
+
 Sitemap: https://www.brickhillandbase.com/sitemap.xml

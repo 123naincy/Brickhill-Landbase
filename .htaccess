@@ -1,5 +1,7 @@
 RewriteEngine On
 
+ErrorDocument 404 /404.html
+
 # One host: https://www. Hostinger already sends http to https.
 RewriteCond %{HTTP_HOST} !^www\.brickhillandbase\.com$ [NC]
 RewriteRule ^ https://www.brickhillandbase.com%{REQUEST_URI} [R=301,L]

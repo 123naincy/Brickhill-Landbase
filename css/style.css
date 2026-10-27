@@ -583,6 +583,10 @@ h4,
   color: var(--gold-soft);
 }
 
+.page-hero p a {
+  color: var(--gold-soft);
+}
+
 .about-photo,
 .mini-card img,
 .story-card img,
@@ -723,6 +727,12 @@ h4,
 .project-hero p,
 .project-hero .chips {
   color: rgba(255, 255, 255, 0.88);
+}
+
+.project-hero .rera-note a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .project-hero .breadcrumb-item,
@@ -1234,6 +1244,43 @@ h4,
   font-size: 0.85rem;
 }
 
+.secure-note a,
+.consent-check a {
+  color: inherit;
+}
+
+.consent-check {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.55rem;
+  align-items: flex-start;
+  margin: 0.75rem 0 0.35rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.consent-check input {
+  margin-top: 0.2rem;
+  flex: 0 0 auto;
+}
+
+.consent-check label {
+  flex: 1 1 12rem;
+  margin: 0;
+}
+
+.consent-check .invalid-feedback {
+  flex-basis: 100%;
+}
+
+.consent-check input.is-invalid ~ .invalid-feedback {
+  display: block;
+}
+
+.footer-bottom a {
+  color: inherit;
+}
+
 .form-alert.error {
   color: #dc2626;
 }
@@ -1483,6 +1530,7 @@ body.page-privacy {
 }
 
 .page-privacy .privacy-section h2,
+.page-privacy .privacy-article > h2,
 .page-privacy .privacy-contact-card h2 {
   margin: 2px 0 14px;
   color: var(--privacy-navy);
@@ -1500,6 +1548,7 @@ body.page-privacy {
 }
 
 .page-privacy .privacy-section p,
+.page-privacy .privacy-article > p,
 .page-privacy .privacy-section li,
 .page-privacy .privacy-contact-card p {
   color: #586372;
@@ -1507,7 +1556,8 @@ body.page-privacy {
   line-height: 1.9;
 }
 
-.page-privacy .privacy-section p {
+.page-privacy .privacy-section p,
+.page-privacy .privacy-article > p {
   margin: 0 0 12px;
 }
 
@@ -2268,26 +2318,26 @@ body.page-privacy {
   transition: fill 0.28s ease, stroke 0.2s ease, opacity 0.2s ease;
 }
 
-.mp-plot[data-status="available"] .mp-plot__shape { fill: rgba(63, 157, 98, 0.2); }
-.mp-plot[data-status="hold"] .mp-plot__shape { fill: rgba(214, 148, 42, 0.28); }
-.mp-plot[data-status="sold"] .mp-plot__shape { fill: rgba(196, 78, 72, 0.26); }
+.mp-plot[data-status="available"] .mp-plot__shape { fill: rgba(214, 228, 196, 0.94); }
+.mp-plot[data-status="hold"] .mp-plot__shape { fill: rgba(243, 214, 160, 0.94); }
+.mp-plot[data-status="sold"] .mp-plot__shape { fill: rgba(236, 186, 180, 0.94); }
 
 .mp-plot[data-status="available"]:hover .mp-plot__shape,
 .mp-plot[data-status="available"]:focus-visible .mp-plot__shape,
 .mp-plot[data-status="available"].is-selected .mp-plot__shape {
-  fill: rgba(39, 148, 78, 0.82);
+  fill: rgba(39, 148, 78, 0.94);
 }
 
 .mp-plot[data-status="hold"]:hover .mp-plot__shape,
 .mp-plot[data-status="hold"]:focus-visible .mp-plot__shape,
 .mp-plot[data-status="hold"].is-selected .mp-plot__shape {
-  fill: rgba(214, 140, 28, 0.86);
+  fill: rgba(214, 140, 28, 0.94);
 }
 
 .mp-plot[data-status="sold"]:hover .mp-plot__shape,
 .mp-plot[data-status="sold"]:focus-visible .mp-plot__shape,
 .mp-plot[data-status="sold"].is-selected .mp-plot__shape {
-  fill: rgba(196, 62, 56, 0.84);
+  fill: rgba(196, 62, 56, 0.94);
 }
 
 .mp-plot__no {
